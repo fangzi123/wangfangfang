@@ -1,0 +1,31 @@
+target/
+*/target/
+!.mvn/wrapper/maven-wrapper.jar
+
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+rebel.xml
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+/idea
+*/rebel.xml
+### mac ###
+*/.DS_Store
+.DS_Store
+
+
+
+.http
+
+# /doc
+launch.json
+settings.json
