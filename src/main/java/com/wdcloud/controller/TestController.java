@@ -1,10 +1,12 @@
 package com.wdcloud.controller;
 
+import com.wdcloud.Application;
 import com.wdcloud.mapper.OrgEmailMapper;
 import com.wdcloud.mapper.WdUserMapper;
 import com.wdcloud.model.OrgEmail;
 import com.wdcloud.model.WdUser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.SpringApplication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 

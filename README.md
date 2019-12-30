@@ -1,3 +1,3 @@
-###本任务考量内容的猜测
-1. 从零快速搭建脚手架的能力
-2. http://127.0.0.1:8000/wangfangfang
+###概述
+* maven启动: mvn spring-boot:run -D spring-boot.run.profiles=stable
+* maven打包: mvn package -P stable
