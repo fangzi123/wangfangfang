@@ -19,14 +19,14 @@ spring:
         testWhileIdle: true
         testOnBorrow: false
         testOnReturn: false
-        timeBetweenEvictionRunsMillis: 10000
-        minEvictableIdleTimeMillis: 30001
-        #      maxEvictableIdleTimeMillis:
+        timeBetweenEvictionRunsMillis: 60000
+        minEvictableIdleTimeMillis: 300000
         async-close-connection-enable: true
-        filters: stat
         removeAbandoned: true
         removeAbandonedTimeout: 300
         logAbandoned: true
+        filters: stat,wall
+        connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=3000
       slave:
         url: jdbc:mysql://192.168.9.240:3306/activity?useUnicode=true&characterEncoding=utf-8
         username: activity
@@ -43,11 +43,12 @@ spring:
         testWhileIdle: true
         testOnBorrow: false
         testOnReturn: false
-        timeBetweenEvictionRunsMillis: 10000
-        minEvictableIdleTimeMillis: 30001
-        #      maxEvictableIdleTimeMillis:
+        timeBetweenEvictionRunsMillis: 60000
+        minEvictableIdleTimeMillis: 300000
         async-close-connection-enable: true
-        filters: stat
         removeAbandoned: true
         removeAbandonedTimeout: 300
         logAbandoned: true
+        filters: stat,wall
+        connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=3000
+
