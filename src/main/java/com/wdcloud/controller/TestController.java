@@ -1,12 +1,12 @@
 package com.wdcloud.controller;
 
-import com.wdcloud.Application;
 import com.wdcloud.mapper.OrgEmailMapper;
 import com.wdcloud.mapper.WdUserMapper;
 import com.wdcloud.model.OrgEmail;
 import com.wdcloud.model.WdUser;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringApplication;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,6 +22,8 @@ public class TestController {
     OrgEmailMapper orgEmailMapper;
     @Autowired
     WdUserMapper wdUserMapper;
+    @Autowired
+    MessageSource messageSource;
     @GetMapping("/wangfangfang")
     public OrgEmail get() {
         OrgEmail orgEmail = new OrgEmail();
@@ -34,5 +36,11 @@ public class TestController {
     public List list() {
        List<WdUser> wdUsers = wdUserMapper.selectAll();
        return wdUsers;
+    }
+
+    @GetMapping("/lang")
+    public String lang() {
+        String rlt=messageSource.getMessage("login.sign",null, LocaleContextHolder.getLocale());
+        return rlt;
     }
 }

@@ -84,6 +84,7 @@
                     <include>application.properties</include>
                     <include>application-${env}.yml</include>
                     <include>**/*.xml</include>
+                    <include>**/messages*.properties</include>
                 </includes>
             </resource>
         </resources>

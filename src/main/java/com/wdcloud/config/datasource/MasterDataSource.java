@@ -1,4 +1,4 @@
-package com.wdcloud.config;
+package com.wdcloud.config.datasource;
 
 
 public @interface MasterDataSource
