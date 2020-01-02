@@ -4,6 +4,7 @@ spring:
   datasource:
     druid:
       master:
+        name: master
         url: jdbc:mysql://192.168.9.240:3306/lms?characterEncoding=utf8&useSSL=false&allowPublicKeyRetrieval=true&allowMultiQueries=true
         username: lms
         password: lmsZdWI1o
@@ -28,6 +29,7 @@ spring:
         filters: stat,wall
         connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=3000
       slave:
+        name: slave
         url: jdbc:mysql://192.168.9.240:3306/activity?useUnicode=true&characterEncoding=utf-8
         username: activity
         password: activity_dazb
