@@ -1,5 +1,7 @@
 package com.wdcloud.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.wdcloud.mapper.OrgEmailMapper;
 import com.wdcloud.mapper.WdUserMapper;
 import com.wdcloud.model.OrgEmail;
@@ -24,6 +26,7 @@ public class TestController {
     WdUserMapper wdUserMapper;
     @Autowired
     MessageSource messageSource;
+
     @GetMapping("/wangfangfang")
     public OrgEmail get() {
         OrgEmail orgEmail = new OrgEmail();
@@ -40,7 +43,11 @@ public class TestController {
 
     @GetMapping("/lang")
     public String lang() {
-        String rlt=messageSource.getMessage("login.sign",null, LocaleContextHolder.getLocale());
-        return rlt;
+        String sign=messageSource.getMessage("login.sign",null, LocaleContextHolder.getLocale());
+        String ok=messageSource.getMessage("login.ok",null, LocaleContextHolder.getLocale());
+        JSONObject json = new JSONObject();
+        json.put("sign",sign);
+        json.put("ok",ok);
+        return json.toJSONString();
     }
 }
