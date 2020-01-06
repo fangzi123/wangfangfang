@@ -48,6 +48,12 @@
             <artifactId>fastjson</artifactId>
             <version>1.2.60</version>
         </dependency>
+        <!-- pagehelper -->
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper-spring-boot-starter</artifactId>
+            <version>1.2.3</version>
+        </dependency>
     </dependencies>
 
     <!-- 环境配置，默认激活dev -->

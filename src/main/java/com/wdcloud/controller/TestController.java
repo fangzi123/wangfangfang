@@ -1,7 +1,8 @@
 package com.wdcloud.controller;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.wdcloud.mapper.OrgEmailMapper;
 import com.wdcloud.mapper.WdUserMapper;
 import com.wdcloud.model.OrgEmail;
@@ -36,9 +37,11 @@ public class TestController {
     }
 
     @GetMapping("/get")
-    public List list() {
+    public Object list() {
+       PageHelper.startPage(1,10);
        List<WdUser> wdUsers = wdUserMapper.selectAll();
-       return wdUsers;
+       PageInfo pageInfo = new PageInfo(wdUsers);
+       return pageInfo;
     }
 
     @GetMapping("/lang")
