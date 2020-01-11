@@ -1,6 +1,3 @@
-logging:
-  config: classpath:logback.xml
-
 server:
   port: 8080
   tomcat:
@@ -29,3 +26,9 @@ pagehelper:
   reasonable: false
   supportMethodsArguments: true
   params: count=countSql
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
