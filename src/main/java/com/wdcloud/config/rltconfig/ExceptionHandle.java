@@ -16,9 +16,9 @@ public class ExceptionHandle {
     }
 
 
-//    @ExceptionHandler(Exception.class)
-//    public CommonResult exceptionHandler(Exception e){
-//
-//        return new CommonResult(500,e.getMessage());
-//    }
+    @ExceptionHandler(Exception.class)
+    public CommonResult exceptionHandler(Exception e){
+
+        return new CommonResult(500,e.getMessage());
+    }
 }
