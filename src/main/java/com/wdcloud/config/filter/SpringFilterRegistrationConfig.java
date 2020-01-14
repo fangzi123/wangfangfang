@@ -11,9 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * 使用 Spring Boot 提供的注册机制
- *
- * @author Felordcn
- * @since 14:27
  **/
 @Configuration
 @Slf4j
