@@ -45,7 +45,6 @@ public class TestController {
        PageHelper.startPage(1,10);
        List<WdUser> wdUsers = wdUserMapper.selectAll();
        PageInfo pageInfo = new PageInfo(wdUsers);
-        System.out.println(1/0);
        return pageInfo;
     }
 
