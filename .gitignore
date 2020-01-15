@@ -21,7 +21,7 @@ rebel.xml
 ### mac ###
 */.DS_Store
 .DS_Store
-doc/
+apidoc/
 
 
 .http

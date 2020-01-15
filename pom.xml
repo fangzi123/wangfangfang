@@ -19,7 +19,6 @@
     <properties>
         <java.version>11</java.version>
         <start-class>com.wdcloud.Application</start-class>
-        <apidoc-executable>apidoc</apidoc-executable>
     </properties>
 
     <dependencies>
@@ -178,12 +177,12 @@
                             <goal>exec</goal>
                         </goals>
                         <configuration>
-                            <executable>${apidoc-executable}</executable>
+                            <executable>apidoc</executable>
                             <arguments>
                                 <argument>-i</argument>
                                 <argument>${basedir}</argument>
                                 <argument>-o</argument>
-                                <argument>${basedir}/doc</argument>
+                                <argument>${basedir}/apidoc</argument>
                             </arguments>
                         </configuration>
                     </execution>
