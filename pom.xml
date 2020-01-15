@@ -19,6 +19,7 @@
     <properties>
         <java.version>11</java.version>
         <start-class>com.wdcloud.Application</start-class>
+        <apidoc-executable>apidoc</apidoc-executable>
     </properties>
 
     <dependencies>
@@ -121,13 +122,6 @@
                 <configuration>
                     <executable>true</executable>
                 </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
             <!-- mybatis generator 自动生成代码插件 -->
             <plugin>
@@ -170,6 +164,30 @@
                 <configuration>
                     <skipTests>true</skipTests>
                 </configuration>
+            </plugin>
+            <!--apidoc 文档-->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.6.0</version>
+                <executions>
+                    <execution>
+                        <id>Creating a Production doc Command</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>${apidoc-executable}</executable>
+                            <arguments>
+                                <argument>-i</argument>
+                                <argument>${basedir}</argument>
+                                <argument>-o</argument>
+                                <argument>${basedir}/doc</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
