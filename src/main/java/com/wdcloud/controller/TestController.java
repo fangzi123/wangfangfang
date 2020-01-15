@@ -4,6 +4,8 @@ import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.wdcloud.config.context.DynamicApplicationContext;
+import com.wdcloud.event.PublishEventService;
+import com.wdcloud.event.UserBean;
 import com.wdcloud.mapper.OrgEmailMapper;
 import com.wdcloud.mapper.WdUserMapper;
 import com.wdcloud.model.OrgEmail;
@@ -31,7 +33,8 @@ public class TestController {
     WdUserMapper wdUserMapper;
     @Autowired
     MessageSource messageSource;
-
+    @Autowired
+    PublishEventService publishEventService;
     /**
      * @api {post} /app/edit 应用添加/编辑
      * @apiDescription 应用添加
@@ -86,6 +89,7 @@ public class TestController {
 
     @GetMapping("/test")
     public Object test() {
+        publishEventService.publishEvent(UserBean.builder().name("wangff").pwd("123456").build());
         return 1;
     }
 }

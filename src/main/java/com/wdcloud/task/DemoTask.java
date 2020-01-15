@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Component
 public class DemoTask {
-    @Scheduled(cron = "0/5 * * * * ?")
+    @Scheduled(cron = "0 0/59 * * * ?")
     public void task() {
         log.info("【DemoTask】开始时间:{}",System.currentTimeMillis());
         log.info("【DemoTask】结束时间:{}",System.currentTimeMillis());

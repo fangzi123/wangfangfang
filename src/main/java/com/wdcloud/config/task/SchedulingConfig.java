@@ -30,7 +30,7 @@ public class SchedulingConfig implements SchedulingConfigurer {
                 //2.设置执行周期(Trigger)
                 triggerContext -> {
                     //2.1从数据库获取执行周期
-                    String cron = "*/10 * * * * ?";
+                    String cron = "0 0/59 * * * ?";
                     //2.2 返回执行周期(Date)
                     return new CronTrigger(cron).nextExecutionTime(triggerContext);
                 });
