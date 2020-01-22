@@ -29,9 +29,13 @@ import java.util.concurrent.ThreadPoolExecutor;
 public class Application{
 
     public static void main(String[] args) {
-        ApplicationContext context= SpringApplication.run(Application.class, args);
-        context.getBean("org.springframework.scheduling.annotation.ProxyAsyncConfiguration");
-        context.getBean("org.springframework.context.annotation.internalAsyncAnnotationProcessor");
+//        ApplicationContext context =
+                SpringApplication.run(Application.class, args).addApplicationListener(event -> {
+                    System.out.println("===getSimpleName=========>"+event.getSource().getClass().getSimpleName());
+                });
+//
+//        context.getBean("org.springframework.scheduling.annotation.ProxyAsyncConfiguration");
+//        context.getBean("org.springframework.context.annotation.internalAsyncAnnotationProcessor");
     }
 
     @Primary

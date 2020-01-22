@@ -24,6 +24,7 @@ public class AnnotationListener {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        log.info("AnnotationListene******************>{}", JSON.toJSONString(event.getSource().getClass().getSimpleName()));
         log.info("AnnotationListener================>{}", JSON.toJSONString(event.getUserBean()));
         log.info("AnnotationListener================>{}", JSON.toJSONString(event.getSource().getClass()));
     }
