@@ -5,6 +5,9 @@ import com.wangff.TestImportBeanDefinitionRegistrar;
 import com.wangff.TestImportSelector;
 import com.wdcloud.model.WdUser;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.ApplicationArguments;
+import org.springframework.boot.ApplicationRunner;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -26,7 +29,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 @EnableScheduling
 @SpringBootApplication
 @MapperScan("com.wdcloud.mapper")
-public class Application{
+public class Application implements ApplicationRunner {
 
     public static void main(String[] args) {
 //        ApplicationContext context =
@@ -56,4 +59,8 @@ public class Application{
         return executor;
     }
 
+    @Override
+    public void run(ApplicationArguments args) throws Exception {
+        log.info("ApplicationArguments========>",args.toString());
+    }
 }
