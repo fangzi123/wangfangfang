@@ -6,6 +6,7 @@ import com.github.pagehelper.PageInfo;
 import com.wdcloud.config.context.DynamicApplicationContext;
 import com.wdcloud.event.PublishEventService;
 import com.wdcloud.event.UserBean;
+import com.wdcloud.jwt.User;
 import com.wdcloud.mapper.OrgEmailMapper;
 import com.wdcloud.mapper.WdUserMapper;
 import com.wdcloud.model.OrgEmail;
@@ -16,6 +17,8 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -61,7 +64,7 @@ public class TestController {
      *      "data": 13
      * }
      */
-    @GetMapping("/wangfangfang")
+    @GetMapping("/wangff")
     public OrgEmail get() {
         OrgEmail orgEmail = new OrgEmail();
         orgEmail.setId(1L);
@@ -92,4 +95,14 @@ public class TestController {
         publishEventService.publishEvent(UserBean.builder().name("wangff").pwd("123456").build());
         return 1;
     }
+
+    @GetMapping("/hello")
+    public Object user() {
+        return "user";
+    }
+    @GetMapping("/admin")
+    public Object admin() {
+        return "admin";
+    }
+
 }
