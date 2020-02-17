@@ -33,8 +33,7 @@ public class HrService implements UserDetailsService {
     }
 
     public int changeSecret(String subject) {
-        SysUser param = new SysUser();
-        param.setUsername(subject);
+        SysUser param =  SysUser.builder().username(subject).build();
         SysUser sysUser= sysUserMapper.selectOne(param);
         return 1;
     }

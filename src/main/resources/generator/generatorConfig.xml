@@ -6,6 +6,10 @@
 <generatorConfiguration>
     <!--<context id="MYSQLTables" targetRuntime="MyBatis3">-->
     <context id="Mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+        <plugin type="com.wdcloud.mybatis.plugins.LombokPlugin">
+            <property name="data" value="true"/>
+        </plugin>
+        <plugin type="com.wdcloud.mybatis.plugins.EntityHelperPlugin"/>
         <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
         <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
             <property name="mappers" value="tk.mybatis.mapper.common.Mapper"/>
