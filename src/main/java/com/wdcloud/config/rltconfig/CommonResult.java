@@ -1,5 +1,6 @@
 package com.wdcloud.config.rltconfig;
 
+import com.alibaba.fastjson.JSON;
 import lombok.Data;
 
 @Data
@@ -27,5 +28,17 @@ public final class CommonResult<T> {
         this.code = code;
         this.msg = msg;
         this.data = data;
+    }
+
+    public String toJSONString() {
+       return JSON.toJSONString(this);
+    }
+
+    public static CommonResult error(String msg) {
+        return new CommonResult(500, msg);
+    }
+
+    public static CommonResult success(Object data) {
+        return new CommonResult(data);
     }
 }

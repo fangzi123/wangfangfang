@@ -13,15 +13,15 @@
             <property name="caseSensitive" value="false"/>
         </plugin>
 
-        <!--<jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"-->
-                        <!--connectionURL="jdbc:mysql://192.168.9.240:3306/lms?characterEncoding=utf8&amp;serverTimezone=UTC&amp;useSSL=false&amp;allowPublicKeyRetrieval=true&amp;nullCatalogMeansCurrent=true"-->
-                        <!--userId="lms" password="lmsZdWI1o">-->
-        <!--</jdbcConnection>-->
         <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
-                        connectionURL="jdbc:mysql://192.168.9.240:3306/activity?useUnicode=true&amp;characterEncoding=utf-8"
-                        userId="activity"
-                        password="activity_dazb">
+                        connectionURL="jdbc:mysql://192.168.9.240:3306/lms?characterEncoding=utf8&amp;serverTimezone=UTC&amp;useSSL=false&amp;allowPublicKeyRetrieval=true&amp;nullCatalogMeansCurrent=true"
+                        userId="lms" password="lmsZdWI1o">
         </jdbcConnection>
+        <!--<jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"-->
+                        <!--connectionURL="jdbc:mysql://192.168.9.240:3306/activity?useUnicode=true&amp;characterEncoding=utf-8"-->
+                        <!--userId="activity"-->
+                        <!--password="activity_dazb">-->
+        <!--</jdbcConnection>-->
 
         <javaModelGenerator targetPackage="com.wdcloud.model"
                             targetProject="src/main/java"/>
@@ -37,13 +37,13 @@
                  <!--<property name="useActualColumnNames" value="false"/>-->
                  <!--<generatedKey column="id" sqlStatement="mysql" identity="true"/>-->
         <!--</table>-->
-        <!--<table schema="lms" tableName="sys_term">-->
-            <!--<property name="useActualColumnNames" value="false"/>-->
-            <!--<generatedKey column="id" sqlStatement="mysql" identity="true"/>-->
-        <!--</table>-->
-        <table schema="activity" tableName="wd_user">
+        <table schema="lms" tableName="sys_user">
             <property name="useActualColumnNames" value="false"/>
             <generatedKey column="id" sqlStatement="mysql" identity="true"/>
         </table>
+        <!--<table schema="activity" tableName="wd_user">-->
+            <!--<property name="useActualColumnNames" value="false"/>-->
+            <!--<generatedKey column="id" sqlStatement="mysql" identity="true"/>-->
+        <!--</table>-->
     </context>
 </generatorConfiguration>

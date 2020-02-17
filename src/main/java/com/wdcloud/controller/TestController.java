@@ -4,23 +4,26 @@ import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.wdcloud.config.context.DynamicApplicationContext;
+import com.wdcloud.dto.AddDTO;
 import com.wdcloud.event.PublishEventService;
 import com.wdcloud.event.UserBean;
+import com.wdcloud.jwt.HrService;
 import com.wdcloud.jwt.User;
 import com.wdcloud.mapper.OrgEmailMapper;
 import com.wdcloud.mapper.WdUserMapper;
 import com.wdcloud.model.OrgEmail;
 import com.wdcloud.model.WdUser;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -64,8 +67,8 @@ public class TestController {
      *      "data": 13
      * }
      */
-    @GetMapping("/wangff")
-    public OrgEmail get() {
+    @RequestMapping("/wangff")
+    public OrgEmail get(@Valid @RequestBody AddDTO addDTO) {
         OrgEmail orgEmail = new OrgEmail();
         orgEmail.setId(1L);
         OrgEmail rlt=orgEmailMapper.selectOne(orgEmail);
