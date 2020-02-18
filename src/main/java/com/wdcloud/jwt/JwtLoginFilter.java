@@ -56,6 +56,7 @@ public class JwtLoginFilter extends AbstractAuthenticationProcessingFilter {
             sb.append(authority.getAuthority()).append(",");
         }
         String jwt = Jwts.builder()
+                .claim("sysUser",authResult.getPrincipal())
                 .claim("authorities", sb)     //配置用户角色
                 .setSubject(authResult.getName())
                 .setExpiration(new Date(System.currentTimeMillis()+12*30*24*60*60*1000))

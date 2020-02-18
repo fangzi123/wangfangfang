@@ -29,7 +29,11 @@ public class HrService implements UserDetailsService {
         if (sysUser == null) {
             throw new UsernameNotFoundException("用户名不对");
         }
-        return User.builder().username(username).password(sysUser.getPassword()).build();
+        return User.builder()
+                .username(username)
+                .password(sysUser.getPassword())
+                .sysUser(sysUser)
+                .build();
     }
 
     public int changeSecret(String subject) {
