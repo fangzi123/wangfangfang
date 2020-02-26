@@ -7,7 +7,6 @@
        <!-- 日志输出格式 -->
        <property name="ENCODER_PATTERN"
                  value="%d{yyyy-MM-dd  HH:mm:ss.SSS} [%thread] %-5level %logger{80} - %msg%n" />
-       <contextName>${APP_NAME}</contextName>
 
        <!-- 控制台日志：输出全部日志到控制台 -->
        <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
@@ -15,10 +14,7 @@
                      <Pattern>${ENCODER_PATTERN}</Pattern>
               </encoder>
        </appender>
-       <logger name="java.sql" level="debug">
-              <appender-ref ref="STDOUT"/>
-              <!--<appender-ref ref="FILE"/>-->
-       </logger>
+
        <!-- 文件日志：输出全部日志到文件 -->
        <appender name="FILE"
                  class="ch.qos.logback.core.rolling.RollingFileAppender">
@@ -46,9 +42,18 @@
               </filter>
        </appender>
 
+       <logger name="com.wdcloud" level="DEBUG" additivity="false">
+              <appender-ref ref="FILE"/>
+       </logger>
+
+       <springProfile name="dev">
+       <logger name="com.wdcloud" level="DEBUG" additivity="false">
+              <appender-ref ref="STDOUT"/>
+       </logger>
+       </springProfile>
+
        <root>
-              <!-- <level value="INFO" /> -->
-              <level value="Debug" />
+              <level value="INFO" />
               <appender-ref ref="STDOUT" />
               <appender-ref ref="FILE" />
               <appender-ref ref="ERROR_FILE" />
