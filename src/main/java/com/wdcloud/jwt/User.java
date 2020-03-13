@@ -1,6 +1,5 @@
 package com.wdcloud.jwt;
 
-import com.wdcloud.model.SysUser;
 import lombok.Builder;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
@@ -12,7 +11,6 @@ import java.util.List;
 @Builder
 @Data
 public class User implements UserDetails {
-    private SysUser sysUser;
     private String username;
     private String password;
     private List<GrantedAuthority> authorities;

@@ -59,7 +59,7 @@ public class JwtLoginFilter extends AbstractAuthenticationProcessingFilter {
                 .claim("sysUser",authResult.getPrincipal())
                 .claim("authorities", sb)     //配置用户角色
                 .setSubject(authResult.getName())
-                .setExpiration(new Date(System.currentTimeMillis()+12*30*24*60*60*1000))
+                .setExpiration(new Date(System.currentTimeMillis()+8*60*60*1000))
                 .signWith(SignatureAlgorithm.HS512,"wangff")
                 .compact();
 

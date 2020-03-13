@@ -2,6 +2,7 @@ package com.wdcloud.config.rltconfig;
 
 import com.alibaba.fastjson.JSON;
 import lombok.Data;
+import org.springframework.util.StringUtils;
 
 @Data
 public final class CommonResult<T> {
@@ -35,10 +36,14 @@ public final class CommonResult<T> {
     }
 
     public static CommonResult error(String msg) {
+        if (StringUtils.isEmpty(msg)) {
+            return new CommonResult(500, "common.error");
+        }
         return new CommonResult(500, msg);
     }
 
     public static CommonResult success(Object data) {
-        return new CommonResult(data);
+            return new CommonResult(data);
     }
+
 }

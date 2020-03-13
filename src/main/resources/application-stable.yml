@@ -1,53 +1,33 @@
-server:
-  port: 8001
 spring:
   datasource:
+    url: jdbc:mysql://192.168.9.240:3306/lms?characterEncoding=utf8&useSSL=false&allowPublicKeyRetrieval=true&allowMultiQueries=true
+    username: lms
+    password: lmsZdWI1o
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    initialSize: 1
+    maxActive: 20
+    minIdle: 1
+    maxWait: 60000
+    poolPreparedStatements: true
+    maxPoolPreparedStatementPerConnectionSize: 20
+    validationQuery: select 1
+    validation-query-timeout: 1
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    async-close-connection-enable: true
+    removeAbandoned: true
+    removeAbandonedTimeout: 300
+    logAbandoned: true
     druid:
-      master:
-        url: jdbc:mysql://192.168.9.240:3306/lms?characterEncoding=utf8&useSSL=false&allowPublicKeyRetrieval=true&allowMultiQueries=true
-        username: lms
-        password: lmsZdWI1o
-        driver-class-name: com.mysql.cj.jdbc.Driver
-        initialSize: 1
-        maxActive: 20
-        minIdle: 1
-        maxWait: 60000
-        poolPreparedStatements: true
-        maxPoolPreparedStatementPerConnectionSize: 20
-        validationQuery: select 1
-        validation-query-timeout: 1
-        testWhileIdle: true
-        testOnBorrow: false
-        testOnReturn: false
-        timeBetweenEvictionRunsMillis: 10000
-        minEvictableIdleTimeMillis: 30001
-        #      maxEvictableIdleTimeMillis:
-        async-close-connection-enable: true
-        filters: stat
-        removeAbandoned: true
-        removeAbandonedTimeout: 300
-        logAbandoned: true
-      slave:
-        url: jdbc:mysql://192.168.9.240:3306/activity?useUnicode=true&characterEncoding=utf-8
-        username: activity
-        password: activity_dazb
-        driver-class-name: com.mysql.cj.jdbc.Driver
-        initialSize: 1
-        maxActive: 20
-        minIdle: 1
-        maxWait: 60000
-        poolPreparedStatements: true
-        maxPoolPreparedStatementPerConnectionSize: 20
-        validationQuery: select 1
-        validation-query-timeout: 1
-        testWhileIdle: true
-        testOnBorrow: false
-        testOnReturn: false
-        timeBetweenEvictionRunsMillis: 10000
-        minEvictableIdleTimeMillis: 30001
-        #      maxEvictableIdleTimeMillis:
-        async-close-connection-enable: true
-        filters: stat
-        removeAbandoned: true
-        removeAbandonedTimeout: 300
-        logAbandoned: true
+      filters: stat,wall
+      web-stat-filter:
+        enabled: true
+      stat-view-servlet:
+        enabled: true
+        login-username: admin
+        login-password: admin
+      connect-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=1000

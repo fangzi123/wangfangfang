@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 8090
   tomcat:
     uri-encoding: UTF-8
 
@@ -8,8 +8,6 @@ spring:
     basename: i18n.messages
   profiles:
     active: @env@
-  application:
-    name: wangfangfang
   http:
     encoding:
       charset: UTF-8
