@@ -1,18 +1,11 @@
 package com.wdcloud;
 
-import com.wangff.TestConfig;
-import com.wangff.TestImportBeanDefinitionRegistrar;
-import com.wangff.TestImportSelector;
-import com.wdcloud.model.WdUser;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Primary;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -22,9 +15,6 @@ import tk.mybatis.spring.annotation.MapperScan;
 import java.util.concurrent.ThreadPoolExecutor;
 
 @Slf4j
-@Import({WdUser.class, TestConfig.class, TestImportSelector.class,
-        TestImportBeanDefinitionRegistrar.class
-})
 @EnableAsync
 @EnableScheduling
 @SpringBootApplication
@@ -32,13 +22,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 public class Application implements ApplicationRunner {
 
     public static void main(String[] args) {
-//        ApplicationContext context =
-                SpringApplication.run(Application.class, args).addApplicationListener(event -> {
-                    System.out.println("===getSimpleName=========>"+event.getSource().getClass().getSimpleName());
-                });
-//
-//        context.getBean("org.springframework.scheduling.annotation.ProxyAsyncConfiguration");
-//        context.getBean("org.springframework.context.annotation.internalAsyncAnnotationProcessor");
+        SpringApplication.run(Application.class, args);
     }
 
     @Primary
@@ -61,6 +45,6 @@ public class Application implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        log.info("ApplicationArguments========>",args.toString());
+        log.info("Application is started ok......");
     }
 }
