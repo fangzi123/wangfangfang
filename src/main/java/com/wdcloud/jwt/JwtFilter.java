@@ -26,7 +26,7 @@ public class JwtFilter extends GenericFilterBean {
         try {
             HttpServletRequest req = (HttpServletRequest) servletRequest;
             String jwt = req.getHeader("jwtToken");
-            Claims claims = Jwts.parser().setSigningKey("wangff")
+            Claims claims = Jwts.parser().setSigningKey("cms")
                     .parseClaimsJws(jwt.replace("Bearer",""))
                     .getBody();
 

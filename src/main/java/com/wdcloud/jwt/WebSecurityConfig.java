@@ -2,6 +2,7 @@ package com.wdcloud.jwt;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -20,12 +21,15 @@ import org.springframework.util.DigestUtils;
 @Slf4j
 @Configuration
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+    @Value("${ignoring.uri}")
+    String[] ignoringUri;
+
     @Autowired
-    HrService hrService;
+    AuthService authService;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(hrService)
+        auth.userDetailsService(authService)
                 .passwordEncoder(new PasswordEncoder() {
                     @Override
                     public String encode(CharSequence charSequence) {
@@ -56,7 +60,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/get","/post","/index.html", "/static/**", "/login_p", "/favicon.ico");
+                 web.ignoring()
+                .antMatchers(ignoringUri);
     }
 
 }

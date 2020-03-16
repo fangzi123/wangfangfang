@@ -30,3 +30,6 @@ management:
     web:
       exposure:
         include: "*"
+
+ignoring:
+  uri: /get,/post

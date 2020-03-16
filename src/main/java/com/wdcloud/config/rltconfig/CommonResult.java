@@ -2,7 +2,6 @@ package com.wdcloud.config.rltconfig;
 
 import com.alibaba.fastjson.JSON;
 import lombok.Data;
-import org.springframework.util.StringUtils;
 
 @Data
 public final class CommonResult<T> {
@@ -17,33 +16,31 @@ public final class CommonResult<T> {
     }
 
     public CommonResult(T data) {
-        this.data = data;
+        this(200, "success", data);
+    }
+    public CommonResult(String msg) {
+        this(500, msg,null);
+    }
+    public CommonResult(int code, String msg) {
+        this(code, msg, null);
     }
 
-    public CommonResult(int code,String msg) {
-        this.code = code;
-        this.msg = msg;
+    public CommonResult(Code err) {
+        this(err.code, err.name);
     }
 
-    public CommonResult(int code,String msg,T data) {
+    public CommonResult(Code err, T data) {
+        this(err.code, err.name, data);
+    }
+
+    public CommonResult(int code, String msg, T data) {
         this.code = code;
-        this.msg = msg;
+        this.msg = MessageUtil.getMessage(msg);
         this.data = data;
     }
 
     public String toJSONString() {
-       return JSON.toJSONString(this);
-    }
-
-    public static CommonResult error(String msg) {
-        if (StringUtils.isEmpty(msg)) {
-            return new CommonResult(500, "common.error");
-        }
-        return new CommonResult(500, msg);
-    }
-
-    public static CommonResult success(Object data) {
-            return new CommonResult(data);
+        return JSON.toJSONString(this);
     }
 
 }

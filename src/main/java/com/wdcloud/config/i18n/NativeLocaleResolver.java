@@ -12,13 +12,12 @@ public class NativeLocaleResolver implements LocaleResolver {
 
         @Override
         public Locale resolveLocale(HttpServletRequest request) {
-            String language = request.getParameter("lang");
-            Locale locale = Locale.getDefault();
+            String language = request.getHeader("lang");
             if(!StringUtils.isEmpty(language)){
                 String[] split = language.split("_");
-                locale = new Locale(split[0],split[1]);
+                return new Locale(split[0],split[1]);
             }
-            return locale;
+            return Locale.getDefault();
         }
 
         @Override

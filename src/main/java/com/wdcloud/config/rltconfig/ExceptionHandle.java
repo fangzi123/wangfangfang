@@ -1,6 +1,5 @@
 package com.wdcloud.config.rltconfig;
 
-import com.alibaba.fastjson.JSON;
 import org.springframework.validation.BindException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -14,16 +13,16 @@ public class ExceptionHandle {
     // 用来捕获和处理参数校验异常
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public CommonResult methodArgumentNotValidExceptionHandler(MethodArgumentNotValidException e){
-        return CommonResult.error(JSON.toJSONString(e.getBindingResult().getFieldErrors()));
+        return new CommonResult(e.getBindingResult().getFieldError().getField()+" " +e.getBindingResult().getFieldError().getDefaultMessage());
     }
 
     @ExceptionHandler(BindException.class)
     public CommonResult methodArgumentNotValidExceptionHandler(BindException e){
-        return CommonResult.error(JSON.toJSONString(e.getBindingResult().getFieldErrors()));
+        return new CommonResult(e.getBindingResult().getFieldError().getField()+" " +e.getBindingResult().getFieldError().getDefaultMessage());
     }
 
     @ExceptionHandler(Exception.class)
     public CommonResult exceptionHandler(Exception e){
-        return CommonResult.error(e.getMessage());
+        return new CommonResult(e.getMessage());
     }
 }

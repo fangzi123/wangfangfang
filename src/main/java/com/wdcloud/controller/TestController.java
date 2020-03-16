@@ -2,6 +2,7 @@ package com.wdcloud.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.wdcloud.config.rltconfig.BaseException;
 import com.wdcloud.dto.AddDTO;
 import com.wdcloud.mapper.SysUserMapper;
 import lombok.extern.slf4j.Slf4j;
@@ -12,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -59,8 +59,11 @@ public class TestController {
     @GetMapping("/get")
     public Object list(@Valid AddDTO addDTO) {
        PageHelper.startPage(1,10);
-       List list = new ArrayList();
+       List list = sysUserMapper.selectAll();
        PageInfo pageInfo = new PageInfo(list);
+        if (pageInfo != null) {
+            throw new BaseException("login.sign");
+        }
        return pageInfo;
     }
 

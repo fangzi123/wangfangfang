@@ -18,15 +18,15 @@ import javax.servlet.http.HttpServletRequest;
 public class LogoutController {
 
     @Autowired
-    HrService hrService;
+    AuthService authService;
 
     @PostMapping("/logout2")
     public Object logout2(HttpServletRequest request) {
         String jwt = request.getHeader("jwtToken");
-        Claims claims = Jwts.parser().setSigningKey("wangff")
+        Claims claims = Jwts.parser().setSigningKey("cms")
                 .parseClaimsJws(jwt.replace("Bearer",""))
                 .getBody();
-        hrService.changeSecret(claims.getSubject());
+        authService.changeSecret(claims.getSubject());
         log.info("================>{}",claims.getSubject());
         return "admin";
     }

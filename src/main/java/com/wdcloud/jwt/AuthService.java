@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
-public class HrService implements UserDetailsService {
+public class AuthService implements UserDetailsService {
 
     @Autowired
     SysUserMapper sysUserMapper;
@@ -22,7 +22,7 @@ public class HrService implements UserDetailsService {
         param.setUsername(username);
         SysUser sysUser = sysUserMapper.selectOne(param);
         if (sysUser == null) {
-            throw new UsernameNotFoundException("用户名不对");
+            throw new UsernameNotFoundException("用户名不正确!");
         }
         return User.builder()
                 .username(username)
