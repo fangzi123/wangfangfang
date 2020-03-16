@@ -34,7 +34,12 @@ public class JwtFilter extends GenericFilterBean {
             //黑名单校验
             CacheService cacheService = DynamicApplicationContext.getBean(CacheService.class);
             if (cacheService.getFromCommonCache(jwt) != null) {
-                returnResp(servletResponse);
+                servletResponse.setContentType("application/json;charset=utf-8");
+                PrintWriter out = servletResponse.getWriter();
+                out.write(JSON.toJSONString(new CommonResult("JwtFilter verify error")));
+                out.flush();
+                out.close();
+                return;
             }
             String username = claims.getSubject();//获取当前登录用户名
             List<GrantedAuthority> authorities = AuthorityUtils.commaSeparatedStringToAuthorityList((String) claims.get("authorities"));
@@ -42,16 +47,13 @@ public class JwtFilter extends GenericFilterBean {
             SecurityContextHolder.getContext().setAuthentication(token);
             filterChain.doFilter(req,servletResponse);
         } catch (Exception e) {
-            returnResp(servletResponse);
+            servletResponse.setContentType("application/json;charset=utf-8");
+            PrintWriter out = servletResponse.getWriter();
+            out.write(JSON.toJSONString(new CommonResult("JwtFilter verify error")));
+            out.flush();
+            out.close();
+            e.printStackTrace();
         }
     }
 
-    private void returnResp(ServletResponse servletResponse) throws IOException {
-        servletResponse.setContentType("application/json;charset=utf-8");
-        PrintWriter out = servletResponse.getWriter();
-        out.write(JSON.toJSONString(new CommonResult("JwtFilter verify error")));
-        out.flush();
-        out.close();
-
-    }
 }

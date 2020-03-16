@@ -21,7 +21,7 @@ public class CacheServiceImpl implements CacheService {
                 //最多100个key，超过按LRU策略移除
                 .maximumSize(1000)
                 //写入后多少时间过期
-                .expireAfterWrite(2, TimeUnit.HOURS).build();
+                .expireAfterWrite(1, TimeUnit.HOURS).build();
     }
     @Override
     public void setCommonCache(String key, Object value) {
