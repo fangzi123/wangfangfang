@@ -30,9 +30,4 @@ public class AuthService implements UserDetailsService {
                 .build();
     }
 
-    public int changeSecret(String subject) {
-        SysUser param =  SysUser.builder().username(subject).build();
-        SysUser sysUser= sysUserMapper.selectOne(param);
-        return 1;
-    }
 }

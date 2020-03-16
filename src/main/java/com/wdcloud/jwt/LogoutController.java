@@ -1,5 +1,7 @@
 package com.wdcloud.jwt;
 
+import com.wdcloud.jwt.cache.CacheService;
+import com.wdcloud.jwt.cache.CacheServiceImpl;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import lombok.extern.slf4j.Slf4j;
@@ -19,16 +21,22 @@ public class LogoutController {
 
     @Autowired
     AuthService authService;
+    @Autowired
+    CacheService cacheService;
 
+    /**
+     * 退出登录，token加入黑名单
+     * @param request
+     * @return
+     */
     @PostMapping("/logout2")
     public Object logout2(HttpServletRequest request) {
         String jwt = request.getHeader("jwtToken");
-        Claims claims = Jwts.parser().setSigningKey("cms")
+        Claims claims = Jwts.parser().setSigningKey("wdcms")
                 .parseClaimsJws(jwt.replace("Bearer",""))
                 .getBody();
-        authService.changeSecret(claims.getSubject());
-        log.info("================>{}",claims.getSubject());
-        return "admin";
+        cacheService.setCommonCache(jwt,claims.getSubject());
+        return "ok";
     }
 
 }
